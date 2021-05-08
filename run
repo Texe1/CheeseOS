@@ -1,0 +1,19 @@
+#!/bin/bash
+
+nasm boot.asm -f bin -o boot.o
+
+nasm kernel.asm -f elf64 -o kernel.asm.o
+
+gcc -Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -c "kernel.c" -o "kernel.o"
+gcc -Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -c "String.c" -o "String.o"
+
+ld -T"link.ld"
+
+cat boot.o kernel > build/boot
+
+rm boot.o
+rm kernel
+rm kernel.o
+rm kernel.asm.o
+
+qemu-system-x86_64 -drive format=raw,file=build/boot
