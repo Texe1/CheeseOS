@@ -1,3 +1,5 @@
+#include "headers/IO.h"
+
 unsigned char inb(unsigned short port){
     unsigned char val;
     asm volatile ("inb %1, %0" : "=a"(val) : "Nd"(port));
