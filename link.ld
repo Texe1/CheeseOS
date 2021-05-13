@@ -10,6 +10,7 @@ INPUT
     String.o
     IDT.o
     screen.o
+    memory.o
 )
 
 OUTPUT

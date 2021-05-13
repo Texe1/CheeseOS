@@ -2,6 +2,7 @@
 #include "headers/String.h"
 #include "headers/IDT.h"
 #include "headers/screen.h"
+#include "headers/memory.h"
 
 
 char *videoMem = (char*)0xa0000;

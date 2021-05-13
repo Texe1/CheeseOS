@@ -19,6 +19,23 @@ int 0x13
 jnc Error16
 
 ; Detecting memory
+DetectMemory:
+mov ax, 0
+mov es, ax
+mov [0x203], byte 0
+mov di, 0x204
+
+xor ebx, ebx
+mov edx, 0x534D4150
+.loop:
+    inc byte [0x203]
+    mov ecx, 0x24
+    mov eax, 0xE820
+    int 0x15
+    cmp ebx, 0
+    jne .loop
+    add di, 24
+.end:
 
 ; sets VGA Graphics Mode
 mov ah, 0x00
