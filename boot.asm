@@ -20,6 +20,10 @@ jnc Error16
 
 ; Detecting memory
 
+; sets VGA Graphics Mode
+mov ah, 0x00
+mov al, 0x13
+int 0x10
 
 cli
 
