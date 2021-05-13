@@ -4,14 +4,18 @@
 #include "headers/screen.h"
 #include "headers/memory.h"
 
-
-char *videoMem = (char*)0xa0000;
+u64 *videoMem = (u64*)0xa0000;
 
 void _start(){
-    videoMem[0] = 0xf;
     IDTInit();
-    char c = 0;
-    clearScreen(0xf);
+    getUsableMemoryRegions();
+    InitializeHeap();
+    void* mallocVal = malloc(0x10);
+    // clearScreen(0x0f);
+    videoMem[0] = ((u64)mallocVal) != 0 ? 0x0f0f0f0f0f0f0f0f : 0x0;
     
+    mallocVal = malloc(0x10);
+    // videoMem[0] = 0x0f0f0f0f0f0f0f0f;
+    // clearScreen(getUsableMemoryAmount());
     return;
 }

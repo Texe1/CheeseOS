@@ -5,7 +5,7 @@ mov [BOOT_DRIVE], dl
 ;clc
 
 ;reads from Disk
-NUMSECTORS equ 32
+NUMSECTORS equ 100
 LOADTO equ 0x8000
 mov ah, 0x02
 mov al, NUMSECTORS
@@ -22,19 +22,19 @@ jnc Error16
 DetectMemory:
 mov ax, 0
 mov es, ax
-mov [0x203], byte 0
-mov di, 0x204
+mov di, 0x8006
 
 xor ebx, ebx
 mov edx, 0x534D4150
 .loop:
-    inc byte [0x203]
+    inc byte [0x8005]
     mov ecx, 0x24
     mov eax, 0xE820
     int 0x15
+    add di, 24
+    jc Error16
     cmp ebx, 0
     jne .loop
-    add di, 24
 .end:
 
 ; sets VGA Graphics Mode
