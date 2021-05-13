@@ -8,6 +8,7 @@ gcc -Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -c "kernel.c" -o "kernel.o"
 gcc -Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -c "String.c" -o "String.o"
 gcc -Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -c "IO.c" -o "IO.o"
 gcc -Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -c "IDT.c" -o "IDT.o"
+gcc -Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -c "screen.c" -o "screen.o"
 
 ld -T"link.ld"
 
@@ -20,5 +21,6 @@ rm kernel.asm.o
 rm IO.o
 rm IDT.o
 rm String.o
+rm screen.o
 
 qemu-system-x86_64 -drive format=raw,file=build/boot
