@@ -9,6 +9,7 @@ INPUT
     IO.o
     String.o
     IDT.o
+    screen.o
 )
 
 OUTPUT

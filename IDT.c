@@ -26,7 +26,7 @@ void IDTInit(){
 }
 
 void keyboardHandler(){
-    ((char*)0xa0000)[0] = inb(0x60);
+    Putpixel(0, 0, inb(0x60));
     outb(0x20, 0x20);
     outb(0x20, 0x20);
 }

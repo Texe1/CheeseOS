@@ -1,6 +1,7 @@
 #pragma once
 #include "typedefs.h"
 #include "IO.h"
+#include "screen.h"
 
 typedef struct IDT
 {
